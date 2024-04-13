@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+	"material-icon-theme.files.associations": {
+		".lintstagedrc": "Pipeline"
+	},
+	"tailwindCSS.experimental.classRegex": [":(?:.|\n)*?[\"'`]([^\"'`]*).*?,"]
+}
