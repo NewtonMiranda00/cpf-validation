@@ -1,32 +1,32 @@
 'use client';
 
-import { Button, Input, Label } from "@/components";
+import { Alert, Button, Input, Label } from "@/components";
 import { ChangeEventHandler, FormEventHandler, useCallback, useState } from "react";
 
 
 export default function Page() {
   const [cpf, setCpf] = useState('');
-  
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = 
-    useCallback((event) => setCpf(event.target.value), []);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const cpfValidation = useCallback((cpf: string): boolean => {
     return /^(\d{11})|(\d{3}(\.\d{3}){2}-\d{2})$/.test(cpf);
   }, []);
+  
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = 
+    useCallback((event) => setCpf(event.target.value), []);
+
+  const handleClosePopup = useCallback(() => setIsOpen(false), []);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback((event) => {
     event.preventDefault(); 
-
-    if (cpfValidation(cpf)) 
-      alert('CPF é válido!');
-    else
-      alert('CPF é inválido!');
+    setIsValid(cpfValidation(cpf))
+    setIsOpen(true)
   }, [cpf, cpfValidation]);
-
-  
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <Alert isOpen={isOpen} isValid={isValid} onClose={handleClosePopup} />
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Validador de CPF</h2>

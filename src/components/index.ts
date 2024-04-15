@@ -5,6 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export * from './alert-dialog'
 export * from './button'
 export * from './input'
 export * from './label'
