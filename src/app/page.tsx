@@ -10,7 +10,7 @@ export default function Page() {
   const [isValid, setIsValid] = useState(false);
 
   const cpfValidation = useCallback((cpf: string): boolean => {
-    return /^(\d{11})|(\d{3}(\.\d{3}){2}-\d{2})$/.test(cpf);
+    return /^((\d{3}(\.\d{3}){2}-\d{2})|(\d{11}))$/.test(cpf);
   }, []);
   
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = 
